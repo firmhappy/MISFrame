@@ -44,7 +44,7 @@
 			onClick : zTreeonClick,
 		}
 	};
-	var curPage = 0;
+	var curPage = 0,className,pageSize;
 	function getUrl(treeId, treeNode) {
 		var param = "pid=" + treeNode.id + "&className=" + treeNode.className
 				+ "&page=" + treeNode.page + "&pageSize=" + treeNode.pageSize, aObj = $("#"
@@ -140,6 +140,7 @@
 			</td>
 			<td height="20%">
 				<h2>模块展示</h2>
+				<button onclick="openmanage()">页面管理</button>
 			</td>
 		</tr>
 		<tr>
@@ -150,8 +151,8 @@
 	</table>
 	<script type="text/javascript">
 		function load() {
-			var className = window.prompt("请输入类名", "");
-			var pageSize = window.prompt("请输入页面大小", "");
+			className = window.prompt("请输入类名", "");
+			pageSize = window.prompt("请输入页面大小", "");
 			if (className == "" || pageSize == "") {
 				alert("输入错误");
 				return;
@@ -167,28 +168,6 @@
 							},
 							function(data, status) {
 								$.fn.zTree.init($("#zTree"), setting, data);
-								var tth = document.getElementById("entityth");
-								var ttd = document.getElementById("entitytd");
-								var thstr = "", tdstr = "";
-								var readonly = "readonly='readonly'";
-								$
-										.each(
-												data[0].dataobj,
-												function(i) {
-													thstr += "<th class='ztd'>"
-															+ i + "</th>";
-													var attribute = "";
-													if (i == "id"
-															|| i == "page"
-															|| i == "pageSize"
-															|| i == "className"
-															|| i == "count"
-															|| i == "path"
-															|| i == "isParent") {
-														attribute = readonly;
-													}
-													tdstr += "<td class='ztd'><input "+attribute+"  type='text' id='"+i+"' value='&nbsp;'/></td>";
-												});
 							});
 
 		}
@@ -203,6 +182,9 @@
 				modelframe.contentWindow.repost(data.result);
 			});
 			
+		}
+		function openmanage(){
+			window.location.href=("./manage.jsp?className="+className+"&pageSize="+pageSize);
 		}
 	</script>
 </body>

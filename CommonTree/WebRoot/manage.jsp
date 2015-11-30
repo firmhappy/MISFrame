@@ -48,6 +48,8 @@
 		}
 	};
 	var curPage = 0;
+	var className='<%=request.getParameter("className").toString()%>';
+	var pageSize='<%=request.getParameter("pageSize")%>';
 	function getUrl(treeId, treeNode) {
 		var param = "pid=" + treeNode.id + "&className=" + treeNode.className
 				+ "&page=" + treeNode.page + "&pageSize=" + treeNode.pageSize, aObj = $("#"
@@ -176,8 +178,7 @@
 </style>
 </head>
 
-<body>
-	<button onclick="load()">Load</button>
+<body onload="load()">
 	<button onclick="update()">update</button>
 	<button onclick="insert()">insert</button>
 	<button onclick="entityremove()">delete</button>
@@ -210,8 +211,6 @@
 </body>
 <script type="text/javascript">
 	function load() {
-		var className=window.prompt("请输入类名", "");
-		var pageSize=window.prompt("请输入页面大小", "");
 		if(className==""||pageSize==""){
 			alert("输入错误");
 			return;
