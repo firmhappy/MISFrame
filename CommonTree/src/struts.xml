@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<package name="commontree" namespace="/" extends="json-default">
+		<action name="GetChildrenAction" class="com.action.TreeAction"
+			method="getChildren">
+			<param name="pid"></param>
+			<param name="classname"></param>
+			<param name="page"></param>
+			<param name="pagesize"></param>
+			<result type="json" name="success">
+				<param name="root">responsejsons</param>
+			</result>
+		</action>
+		<action name="UpdateAction" class="com.action.TreeAction"
+			method="update">
+			<param name="param"></param>
+			<result type="json" name="success">
+				<param name="root">responsejson</param>
+			</result>
+		</action>
+		<action name="InsertAction" class="com.action.TreeAction"
+			method="insert">
+			<param name="param"></param>
+			<result type="json" name="success">
+				<param name="root">responsejson</param>
+			</result>
+		</action>
+		<action name="DeleteAction" class="com.action.TreeAction"
+			method="delete">
+			<param name="param"></param>
+			<result type="json" name="success">
+				<param name="root">responsejson</param>
+			</result>
+		</action>
+		<action name="ExecuteServiceAction" class="com.action.ExecuteAction">
+			<param name="param"></param>
+			<param name="methodname"></param>
+			<param name="modelname"></param>
+			<result type="json" name="success">
+				<param name="root">responsejson</param>
+			</result>
+		</action></package>
+</struts>    
